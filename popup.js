@@ -1,8 +1,9 @@
 $(function () {
 
-	window.chrome.storage.sync.get('total',
+	window.chrome.storage.sync.get(['total','goal'], 
 		function(items) {
 			$('#total').text(items.total);
+			$('#goal').text(items.goal);
 		});
 
 	$('#addAmount').click(function () {
