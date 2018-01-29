@@ -1,12 +1,12 @@
 var menuItem = {
-	"id": "addProtein",
-	"title": "Add Protein",
+	"id": "addHours",
+	"title": "Add Hours",
 	"contexts" : ["selection"]
 };
 
 window.chrome.contextMenus.create(menuItem);
 window.chrome.contextMenus.onClicked.addListener(function(clickData) {
-	if (clickData.menuItemId === "addProtein" && clickData.selectionText) {
+	if (clickData.menuItemId === "addHours" && clickData.selectionText) {
 		var intRegex = /^\d+$/;
 		if (intRegex.test(clickData.selectionText)) {
 			window.chrome.storage.sync.get('total',
