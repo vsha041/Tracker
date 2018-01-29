@@ -7,7 +7,7 @@ $(function () {
 		});
 
 	$('#addAmount').click(function () {
-		window.chrome.storage.sync.get('total',
+		window.chrome.storage.sync.get(['total', 'goal'],
 			function (items) {
 				var newTotal = 0;
 				if (items.total) {
@@ -22,6 +22,17 @@ $(function () {
 				window.chrome.storage.sync.set({ 'total': newTotal });
 				$('#total').text(newTotal);
 				$('#amount').val('');
+
+				if (newTotal >= items.goal) {
+					var opt = {
+						type: "basic",
+						title: "Goal Reached!",
+						message: "You reached your goal of " + items.goal + " !",
+						iconUrl: "icon.png"
+					};
+
+					window.chrome.notifications.create('save', opt, function () { });
+				}
 			});
 	});
 });
